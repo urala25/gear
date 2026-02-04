@@ -1,0 +1,92 @@
+:root{
+  --bg:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --card:#f8fafc;
+  --line:#e5e7eb;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.wrap{
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+}
+
+.title{
+  font-size: 22px;
+  margin: 0 0 14px;
+  letter-spacing: .02em;
+}
+
+.gear-card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.gear-stage{
+  width: min(320px, 82vw);
+  margin: 10px auto 8px;
+}
+
+.meta{
+  text-align:center;
+  margin-top: 10px;
+}
+.progress{
+  font-size: 22px;
+  font-weight: 700;
+}
+.hint{
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.btn{
+  appearance:none;
+  border: 1px solid var(--line);
+  background:#fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor:pointer;
+}
+.btn.sub{
+  background: transparent;
+}
+
+.codes{
+  margin-top: 14px;
+}
+.codes summary{
+  cursor:pointer;
+  color: var(--muted);
+  font-size: 14px;
+}
+.codes ul{
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+.codes li{
+  font-size: 13px;
+  color: var(--text);
+  word-break: break-all;
+}
