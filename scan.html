@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scan</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1 class="title">読み込み中…</h1>
+    <p class="hint" id="msg">QRコードを処理しています</p>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const code = params.get("code");
+
+    const KEY = "gear_codes_v1";
+    const raw = localStorage.getItem(KEY);
+    const codes = raw ? JSON.parse(raw) : [];
+
+    const msgEl = document.getElementById("msg");
+
+    if (!code) {
+      msgEl.textContent = "コードが見つかりませんでした。";
+      setTimeout(() => (location.href = "./index.html"), 1200);
+    } else {
+      if (!codes.includes(code)) {
+        codes.push(code);
+        localStorage.setItem(KEY, JSON.stringify(codes));
+        msgEl.textContent = "取得しました！トップへ戻ります。";
+      } else {
+        msgEl.textContent = "このコードは取得済みです。トップへ戻ります。";
+      }
+      setTimeout(() => (location.href = "./index.html"), 900);
+    }
+  </script>
+</body>
+</html>
