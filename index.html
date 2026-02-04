@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gear Change</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1 class="title">Gear Change</h1>
+
+    <div class="gear-card">
+      <div class="gear-stage" id="gearStage" aria-label="進捗ギア">
+        <!-- JSでSVG（マスク付き）を挿入 -->
+      </div>
+
+      <div class="meta">
+        <div class="progress" id="progressText">0 / 6</div>
+        <div class="hint">QRを読み込むたびにギアが色づきます</div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="showCodesBtn" type="button">取得済みコードを見る</button>
+        <button class="btn sub" id="resetBtn" type="button">リセット（テスト用）</button>
+      </div>
+
+      <details class="codes" id="codesPanel">
+        <summary>取得済みコード</summary>
+        <ul id="codesList"></ul>
+      </details>
+    </div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
