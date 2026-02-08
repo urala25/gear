@@ -1,6 +1,19 @@
 const MAX = 6;
 const KEY = "gear_codes_v1";
 
+/**
+ * 方式C：コード→表示名の対応表（サーバ無しで表示名だけ変えたい時に最適）
+ * ここに載っているcodeは一覧で「名前表示」になります。
+ */
+const CODE_TO_NAME = {
+  "GC_P8R4M2X9K7T1V6Q3": "八神 かなえ",
+  "GC_H6W2N9C4Y8D1S7L5": "神谷 そうた",
+  "GC_Z3K7Q1V8M2P9R4X6": "三浦 ひかり",
+  "GC_T1Y8D4S7L5H6W2N9": "佐伯 けんじ",
+  "GC_C4Y8D1S7L5H6W2N9": "青木 れいな",
+  "GC_M2P9R4X6Z3K7Q1V8": "小林 さき",
+};
+
 function getCodes() {
   const raw = localStorage.getItem(KEY);
   return raw ? JSON.parse(raw) : [];
@@ -32,13 +45,20 @@ function render() {
   const progressEl = document.getElementById("progressText");
   if (progressEl) progressEl.textContent = `${progress} / ${MAX}`;
 
-  // 取得済みコード
+  // 取得済みコード（→名前表示）
   const list = document.getElementById("codesList");
   if (list) {
     list.innerHTML = "";
-    codes.slice(0, MAX).forEach((c) => {
+
+    // 取得順で表示（必要なら並び替えも可能）
+    codes.slice(0, MAX).forEach((code) => {
+      const name = CODE_TO_NAME[code] ?? code; // 対応が無い場合はcodeを表示
+
       const li = document.createElement("li");
-      li.textContent = c;
+      li.textContent = name; // 「名前だけ」表示
+      // もし「名前＋code」も出したいなら ↓ に変更してください
+      // li.textContent = `${name}（${code}）`;
+
       list.appendChild(li);
     });
   }
@@ -46,7 +66,7 @@ function render() {
   // SVG（マスク）生成
   const size = 512;
   const cx = size / 2, cy = size / 2;
-  const r = size * 0.52; // ←色づき範囲がズレる時はここを0.48〜0.58で調整
+  const r = size * 0.52; // 色づき範囲がズレる時は 0.48〜0.58 で調整
 
   // 6分割：1枚ずつ色づく
   const step = 360 / MAX;
@@ -60,7 +80,6 @@ function render() {
   }
 
   // gear.pngを2枚重ね：上を#F04600に変換してマスク
-  // ※gear.pngは透過PNG推奨（今回の添付はOKです）
   const svg = `
   <svg viewBox="0 0 ${size} ${size}" width="100%" height="100%" role="img" aria-label="ギア進捗">
     <defs>
