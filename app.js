@@ -2,7 +2,6 @@ const MAX = 6;
 const KEY = "gear_codes_v1";
 
 /**
- * 方式C：コード→表示名の対応表（サーバ無しで表示名だけ変えたい時に最適）
  * ここに載っているcodeは一覧で「名前表示」になります。
  */
 const CODE_TO_NAME = {
